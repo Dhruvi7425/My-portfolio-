@@ -36,4 +36,4 @@ This portfolio is created to:
 ---
 
 ## 🌐 Live Demo
-*(Add your deployed link here)*  
+https://dhruvi7425.github.io/My-portfolio-/  
