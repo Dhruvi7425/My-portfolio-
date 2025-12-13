@@ -152,33 +152,41 @@ The system replaces manual processes like emails and paper records with a digita
                 </div>
 
                 <div class="contact-form-wrapper">
-                    <h4 class="contact-subtitle">Send a Message</h4>
-                    <form id="contactForm" class="contact-form">
-                        <input 
-                            type="text" 
-                            name="name" 
-                            placeholder="Your Name" 
-                            required
-                            class="form-input"
-                        >
-                        <input 
-                            type="email" 
-                            name="email" 
-                            placeholder="Your Email" 
-                            required
-                            class="form-input"
-                        >
-                        <textarea 
-                            name="message" 
-                            placeholder="Your Message" 
-                            required
-                            rows="5"
-                            class="form-textarea"
-                        ></textarea>
-                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-                        <div id="formStatus" class="form-status"></div>
-                    </form>
-                </div>
+    <h4 class="contact-subtitle">Send a Message</h4>
+
+    <form id="contactForm" class="contact-form">
+        <input
+            type="text"
+            name="name"
+            class="form-input"
+            placeholder="Your Name"
+            required
+        />
+
+        <input
+            type="email"
+            name="email"
+            class="form-input"
+            placeholder="Your Email"
+            required
+        />
+
+        <textarea
+            name="message"
+            class="form-textarea"
+            placeholder="Your Message"
+            rows="5"
+            required
+        ></textarea>
+
+        <button type="submit" class="btn btn-primary btn-full">
+            Send Message
+        </button>
+
+        <div id="formStatus" class="form-status"></div>
+    </form>
+</div>
+
             </div>
         </div>
     </section>
