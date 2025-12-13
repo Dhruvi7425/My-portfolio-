@@ -46,7 +46,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Your email address where you want to receive messages
-$to = 'dhruvi@example.com'; // CHANGE THIS TO YOUR EMAIL
+$to = 'dhruvisutariya024@gmail.com'; // CHANGE THIS TO YOUR EMAIL
 
 // Email subject
 $subject = 'New Contact Form Message from ' . $name;
