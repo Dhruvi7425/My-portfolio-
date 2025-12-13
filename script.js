@@ -1,91 +1,87 @@
 // Mobile Menu Toggle
-const menuToggle = document.getElementById("menuToggle")
-const navLinks = document.getElementById("navLinks")
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
 menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active")
-  menuToggle.classList.toggle("active")
-})
+  navLinks.classList.toggle("active");
+  menuToggle.classList.toggle("active");
+});
 
 // Close menu when clicking nav links
 document.querySelectorAll(".nav-link").forEach((link) => {
   link.addEventListener("click", () => {
-    navLinks.classList.remove("active")
-    menuToggle.classList.remove("active")
-  })
-})
+    navLinks.classList.remove("active");
+    menuToggle.classList.remove("active");
+  });
+});
 
 // Navbar background on scroll
-const navbar = document.getElementById("navbar")
+const navbar = document.getElementById("navbar");
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    navbar.style.background = "rgba(2, 6, 23, 0.95)"
-  } else {
-    navbar.style.background = "rgba(2, 6, 23, 0.8)"
-  }
-})
+  navbar.style.background =
+    window.scrollY > 50
+      ? "rgba(2, 6, 23, 0.95)"
+      : "rgba(2, 6, 23, 0.8)";
+});
 
-// Contact Form Submission
-const contactForm = document.getElementById("contactForm")
-const formStatus = document.getElementById("formStatus")
+// ===============================
+// Contact Form (Formspree Version)
+// ===============================
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
 
 contactForm.addEventListener("submit", async (e) => {
-  e.preventDefault()
+  e.preventDefault();
 
-  const formData = {
-    name: contactForm.name.value,
-    email: contactForm.email.value,
-    message: contactForm.message.value,
-  }
-
-  // Change button text
-  const submitBtn = contactForm.querySelector('button[type="submit"]')
-  const originalText = submitBtn.textContent
-  submitBtn.textContent = "Sending..."
-  submitBtn.disabled = true
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  submitBtn.textContent = "Sending...";
+  submitBtn.disabled = true;
 
   try {
-    // Replace this URL with your backend endpoint
-    const response = await fetch("contact.php", {
+    const response = await fetch("https://formspree.io/f/xpwvbred", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData),
-    })
+      body: JSON.stringify({
+        name: contactForm.name.value,
+        email: contactForm.email.value,
+        message: contactForm.message.value
+      })
+    });
 
     if (response.ok) {
-      formStatus.textContent = "Message sent successfully!"
-      formStatus.className = "form-status success"
-      contactForm.reset()
+      formStatus.textContent = "✅ Message sent successfully!";
+      formStatus.style.color = "green";
+      contactForm.reset();
     } else {
-      throw new Error("Failed to send message")
+      throw new Error();
     }
-  } catch (error) {
-    formStatus.textContent = "Failed to send message. Please try again."
-    formStatus.className = "form-status error"
+  } catch {
+    formStatus.textContent = "❌ Failed to send message. Try again.";
+    formStatus.style.color = "red";
   } finally {
-    submitBtn.textContent = originalText
-    submitBtn.disabled = false
+    submitBtn.textContent = "Send Message";
+    submitBtn.disabled = false;
 
-    // Hide status after 5 seconds
     setTimeout(() => {
-      formStatus.style.display = "none"
-    }, 5000)
+      formStatus.textContent = "";
+    }, 5000);
   }
-})
+});
 
 // Smooth scroll with offset for fixed navbar
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
     if (target) {
-      const offsetTop = target.offsetTop - 64 // navbar height
+      const offsetTop = target.offsetTop - 64;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
-      })
+      });
     }
-  })
-})
+  });
+});
